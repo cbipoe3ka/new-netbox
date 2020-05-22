@@ -67,7 +67,8 @@ class Payment(models.Model):
 
     work_description = models.CharField(
         max_length=150,
-        verbose_name='Назначение работ'
+        verbose_name='Назначение работ',
+        default=' '
     )
 
     sub_project = models.CharField(
@@ -96,7 +97,8 @@ class Payment(models.Model):
         to=Contractor,
         blank=True,
         on_delete=models.PROTECT,
-        verbose_name='Контрагент'
+        verbose_name='Контрагент',
+        default = 'null'
     )
 
     period = models.CharField(
