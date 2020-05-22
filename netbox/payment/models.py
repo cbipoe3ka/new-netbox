@@ -95,6 +95,7 @@ class Payment(models.Model):
     contractor = models.ForeignKey(
         to=Contractor,
         blank=True,
+        on_delete=models.PROTECT,
         verbose_name='Контрагент'
     )
 
