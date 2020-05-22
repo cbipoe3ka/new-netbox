@@ -98,7 +98,7 @@ class Payment(models.Model):
         blank=True,
         on_delete=models.PROTECT,
         verbose_name='Контрагент',
-        default = 'null'
+        default = 1
     )
 
     period = models.CharField(
