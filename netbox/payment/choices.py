@@ -41,3 +41,40 @@ class PaymentTypeChoices (ChoiceSet):
         TYPE_MAINTENANCE: 3,
         TYPE_REPAIR: 4,
     }
+
+
+class CurrencyChoices (ChoiceSet):
+    DOLLAR = 'USD'
+    EURO = 'EUR'
+    RUB = 'RUB'
+    DRAM = 'AMD'
+
+    CHOICES = (
+        (DOLLAR, 'USD'),
+        (EURO,'EUR'),
+        (RUB, 'RUB'),
+        (DRAM, 'AMD'),
+    )
+
+    LEGACY_MAP = {
+        DOLLAR: 0,
+        EURO: 1,
+        RUB: 2,
+        DRAM: 3,
+    }
+
+
+class SubProjectChoices (ChoiceSet):
+    STUDIO = 'Студия'
+    TENNIS = 'Теннис'
+
+    CHOICES = (
+        (STUDIO, 'Студия'),
+        (TENNIS, 'Теннис'),
+    )
+
+
+    LEGACY_MAP = {
+        STUDIO: 0,
+        TENNIS: 1,
+    }

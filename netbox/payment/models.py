@@ -4,7 +4,7 @@ from circuits.models import Circuit
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.urls import reverse
-from .choices import PaymentPeriodChoices, PaymentTypeChoices
+from .choices import PaymentPeriodChoices, PaymentTypeChoices, CurrencyChoices, SubProjectChoices
 
 # Create your models here.
 __all__ = (
@@ -44,6 +44,20 @@ class ContractFile(models.Model):
 
     class Meta:
         ordering = ['name']
+
+
+class Contractor(models.Model):
+    name = models.CharField(
+        max_length=70,
+        verbose_name='Контрагент'
+    )
+
+    comments = models.TextField (
+        blank=True
+    )
+
+    class Meta:
+        ordering = ['name']
     
 class Payment(models.Model):
     name = models.CharField(
@@ -51,11 +65,38 @@ class Payment(models.Model):
         verbose_name='Название'
     )
 
+    work_description = models.CharField(
+        max_length=150,
+        verbose_name='Назначение работ'
+    )
+
+    sub_project = models.CharField(
+        max_length=70,
+        choices=SubProjectChoices,
+        default=SubProjectChoices.STUDIO,
+        blank=True
+    )
+
+
+
     slug = models.SlugField(
         unique=True
     )
 
     price = models.IntegerField()
+
+    currency = models.CharField(
+        max_length=10,
+        choices=CurrencyChoices,
+        default=CurrencyChoices.DOLLAR
+    )
+
+
+    contractor = models.ForeignKey(
+        to=Contractor,
+        blank=True,
+        verbose_name='Контрагент'
+    )
 
     period = models.CharField(
         max_length=50,
