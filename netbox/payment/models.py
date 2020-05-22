@@ -46,18 +46,6 @@ class ContractFile(models.Model):
         ordering = ['name']
 
 
-class Contractor(models.Model):
-    name = models.CharField(
-        max_length=70,
-        verbose_name='Контрагент'
-    )
-
-    comments = models.TextField (
-        blank=True
-    )
-
-    class Meta:
-        ordering = ['name']
     
 class Payment(models.Model):
     name = models.CharField(
