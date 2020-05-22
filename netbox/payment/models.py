@@ -93,12 +93,10 @@ class Payment(models.Model):
     )
 
 
-    contractor = models.ForeignKey(
-        to=Contractor,
-        blank=True,
-        on_delete=models.PROTECT,
+    contractor = models.CharField(
+        max_length=120,
         verbose_name='Контрагент',
-        default = 1
+        default=''
     )
 
     period = models.CharField(
