@@ -15,23 +15,35 @@
         <th> Value </th>
     </tr>
     <tr>
-        <td> Price </td>
-        <td> {{payment.price}} $ </td>
+        <td>Назначение платежа</td>
+        <td>{{ payment.work_description }}</td>
     </tr>
     <tr>
-        <td> Type </td>
+        <td>Подпроект</td>
+        <td>{{ payment.sub_project }}</td>
+    </tr>
+    <tr>
+        <td> Стоимость </td>
+        <td> {{payment.price}} {{payment.currency}} </td>
+    </tr>
+    <tr>
+        <td> Тип платежа </td>
         <td>{{ payment.payment_type }}</td>
     </tr>
     <tr>
-        <td> Payment date </td>
+        <td> Дата оплаты </td>
         <td> {{ payment.payment_date }}
     </tr>
     <tr>
-        <td> Period </td>
+        <td> Периодичность </td>
         <td>{{ payment.period }} </td>
     </tr>
     <tr>
-        <td> linked objects </td>
+        <td>Контрагент</td>
+        <td>{{ paymen.contractor }}</td>
+    </tr>
+    <tr>
+        <td> Связанные объекты </td>
         <td>
             {% for item in payment.devices.all  %}
             <a href="{% url 'dcim:device' pk=item.id %}">
