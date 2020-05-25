@@ -35,7 +35,7 @@ class PaymentForm(F.BootstrapMixin, forms.ModelForm):
         
 
         fields = [
-            'name', 'work_description', 'sub_project', 'payment_company', 'slug', 'price', 'currency', 'contractor', 'payment_date', 'period','payment_type', 'devices', 'circuits', 'comments',
+            'name', 'work_description', 'sub_project', 'slug', 'price', 'currency', 'contractor', 'payment_date', 'period','payment_type', 'devices', 'circuits', 'comments',
         ]
         widgets = {
             'sub_project' : F.StaticSelect2(),
