@@ -9,9 +9,6 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('dcim', '0105_interface_name_collation'),
-        ('circuits', '0018_standardize_description'),
-        ('contenttypes', '0002_remove_content_type_name'),
     ]
 
     operations = [
