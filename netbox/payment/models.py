@@ -60,7 +60,7 @@ class Contractor(models.Model):
     class Meta:
         ordering = ['name']
 
-class PayCompany(models.Model):
+class Company(models.Model):
     name = models.CharField(
         max_length=70,
         verbose_name='Компания плательщик'
@@ -112,7 +112,7 @@ class Payment(models.Model):
     )
 
     payment_company = models.ForeignKey(
-        to=PayCompany,
+        to=Company,
         on_delete=models.PROTECT,
         blank=True
     )
