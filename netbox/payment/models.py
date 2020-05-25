@@ -111,7 +111,7 @@ class Payment(models.Model):
         verbose_name='Валюта'
     )
 
-    payment_company = models.ForeignKey(
+    comp = models.ForeignKey(
         to=Company,
         on_delete=models.PROTECT,
         blank=True
