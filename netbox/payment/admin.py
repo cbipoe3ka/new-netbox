@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Payment, ContractFile
+from .models import Payment, ContractFile, Company, Contractor
 
 @admin.register(Payment)
 class PaymentAdmin(admin.ModelAdmin):
@@ -21,3 +21,16 @@ class ContractFile(admin.ModelAdmin):
         'document',
     )
 
+
+@admin.register(Company)
+class Company(admin.ModelAdmin):
+    list_display = (
+        'name'
+    )
+
+
+@admin.register(Contractor)
+class Contractor(admin.ModelAdmin):
+    list_display = (
+        'name'
+    )
