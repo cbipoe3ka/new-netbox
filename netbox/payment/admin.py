@@ -25,12 +25,12 @@ class ContractFile(admin.ModelAdmin):
 @admin.register(Company)
 class Company(admin.ModelAdmin):
     list_display = (
-        'name'
+        'name',
     )
 
 
 @admin.register(Contractor)
 class Contractor(admin.ModelAdmin):
     list_display = (
-        'name'
+        'name',
     )
