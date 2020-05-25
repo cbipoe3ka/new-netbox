@@ -46,6 +46,17 @@ class ContractFile(models.Model):
         ordering = ['name']
 
 
+class Contractor(models.Model):
+    name = models.CharField(
+        max_length=70,
+        verbose_name='Контрагент'
+    )
+
+    description - models.TextField(
+        verbose_name='Описание контрагента'
+    )
+
+
     
 class Payment(models.Model):
     name = models.CharField(
@@ -68,7 +79,6 @@ class Payment(models.Model):
     )
 
 
-
     slug = models.SlugField(
         unique=True
     )
@@ -85,10 +95,10 @@ class Payment(models.Model):
     )
 
 
-    contractor = models.CharField(
-        max_length=120,
-        verbose_name='Контрагент',
-        default=''
+    contractor = models.ForeignKey(
+        to=Contractor,
+        on_delete=models.PROTECT,
+        default=None
     )
 
     period = models.CharField(
