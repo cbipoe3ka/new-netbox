@@ -63,7 +63,8 @@ class Payment(models.Model):
         max_length=70,
         choices=SubProjectChoices,
         default=SubProjectChoices.STUDIO,
-        blank=True
+        blank=True,
+        verbose_name='Подпроект'
     )
 
 
