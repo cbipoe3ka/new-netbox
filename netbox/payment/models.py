@@ -60,6 +60,19 @@ class Contractor(models.Model):
     class Meta:
         ordering = ['name']
 
+class PayCompany(models.Model):
+    name = models.CharField(
+        max_length=70,
+        verbose_name='Компания плательщик'
+    )
+
+    description = models.TextField(
+        verbose_name='Описание компании'
+    ) 
+
+    class Meta:
+        ordering = ['name']
+
 
     
 class Payment(models.Model):
@@ -98,11 +111,17 @@ class Payment(models.Model):
         verbose_name='Валюта'
     )
 
+    payment_company = models.ForeignKey(
+        to=PayCompany,
+        on_delete=models.PROTECT,
+        blank=True
+    )
+
 
     contractor = models.ForeignKey(
         to=Contractor,
         on_delete=models.PROTECT,
-        default=1
+        blank=True
     )
 
     period = models.CharField(
