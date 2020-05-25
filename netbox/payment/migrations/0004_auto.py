@@ -5,10 +5,11 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-
+    dependencies = [
+        ('payment', '0003_payment_slug'),
+    ]
 
     operations = [
-
         migrations.AddField(
             model_name='payment',
             name='contractor',
