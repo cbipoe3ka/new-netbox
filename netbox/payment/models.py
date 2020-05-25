@@ -52,7 +52,7 @@ class Contractor(models.Model):
         verbose_name='Контрагент'
     )
 
-    description - models.TextField(
+    description = models.TextField(
         verbose_name='Описание контрагента'
     )
 
