@@ -119,12 +119,14 @@ class Payment(models.Model):
     comp = models.ForeignKey(
         to=Company,
         on_delete=models.PROTECT,
+        verbose_name = 'Компания плательщик'
     )
 
 
     contractor = models.ForeignKey(
         to=Contractor,
         on_delete=models.PROTECT,
+        verbose_name='Контрагент'
     )
 
     period = models.CharField(
