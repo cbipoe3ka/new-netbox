@@ -55,7 +55,7 @@ class Payment(models.Model):
 
     work_description = models.CharField(
         max_length=150,
-        verbose_name='Назначение работ',
+        verbose_name='Назначение платежа',
         default=' '
     )
 
