@@ -93,13 +93,15 @@ class Payment(models.Model):
     period = models.CharField(
         max_length=50,
         choices=PaymentPeriodChoices,
-        default=PaymentPeriodChoices.PAYMENT_MONTH
+        default=PaymentPeriodChoices.PAYMENT_MONTH,
+        verbose_name='Период'
     )
 
     payment_type = models.CharField(
         max_length=50,
         choices=PaymentTypeChoices,
         default=PaymentTypeChoices.TYPE_RENT,
+        verbose_name='Тип платежа'
     )
 
 
