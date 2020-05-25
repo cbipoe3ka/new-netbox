@@ -22,6 +22,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='payment',
             name='contractor',
-            field=models.ForeignKey(default=None, on_delete=django.db.models.deletion.PROTECT, to='payment.Contractor'),
+            field=models.ForeignKey(default=1, on_delete=django.db.models.deletion.PROTECT, to='payment.Contractor'),
         ),
     ]
