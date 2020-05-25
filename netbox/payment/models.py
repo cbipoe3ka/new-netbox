@@ -56,6 +56,9 @@ class Contractor(models.Model):
         verbose_name='Описание контрагента'
     )
 
+    def __str__(self):
+        return self.name
+
 
     class Meta:
         ordering = ['name']
@@ -69,6 +72,8 @@ class Company(models.Model):
     description = models.TextField(
         verbose_name='Описание компании'
     ) 
+    def __str__(self):
+        return self.name
 
     class Meta:
         ordering = ['name']
