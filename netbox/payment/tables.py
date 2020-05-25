@@ -36,4 +36,4 @@ class PaymentTable(BaseTable):
 
     class Meta(BaseTable.Meta):
         model = Payment
-        fields = ('pk', 'name', 'payment_type', 'period', 'price', 'actions')
+        fields = ('pk', 'name', 'payment_type', 'period', 'price', 'currency', 'actions')
