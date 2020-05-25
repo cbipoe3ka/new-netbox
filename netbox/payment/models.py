@@ -102,7 +102,7 @@ class Payment(models.Model):
     contractor = models.ForeignKey(
         to=Contractor,
         on_delete=models.PROTECT,
-        default=None
+        default=1
     )
 
     period = models.CharField(
