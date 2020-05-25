@@ -57,6 +57,10 @@ class Contractor(models.Model):
     )
 
 
+    class Meta:
+        ordering = ['name']
+
+
     
 class Payment(models.Model):
     name = models.CharField(
