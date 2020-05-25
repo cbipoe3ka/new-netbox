@@ -72,12 +72,15 @@ class Payment(models.Model):
         unique=True
     )
 
-    price = models.IntegerField()
+    price = models.IntegerField(
+        verbose_name='Стоимость'
+    )
 
     currency = models.CharField(
         max_length=10,
         choices=CurrencyChoices,
-        default=CurrencyChoices.DOLLAR
+        default=CurrencyChoices.DOLLAR,
+        verbose_name='Валюта'
     )
 
 
