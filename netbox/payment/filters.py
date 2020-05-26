@@ -8,7 +8,7 @@ from utilities.filters import (
     BaseFilterSet, NameSlugSearchFilterSet, TagFilter, TreeNodeMultipleChoiceFilter
 )
 from .choices import *
-from .models import Payment
+from .models import Payment, Contractor, Company
 
 
 __all__ = (
@@ -31,6 +31,11 @@ class PaymentFilterSet(BaseFilterSet):
         choices = PaymentPeriodChoices,
         null_value=None
     ) 
+
+    contractor = django_filters.MultipleChoiceFilter(
+        queryset = Contractor.objects.all(),
+        null_value = None
+    )
     class Meta:
          model = Payment
          fields = ['name', 'price', 'payment_type']
@@ -41,5 +46,6 @@ class PaymentFilterSet(BaseFilterSet):
         return queryset.filter(
             Q(name__icontains=value) |
             Q(payment_type__icontains=value) |
-            Q(period__icontains=value)
+            Q(period__icontains=value) |
+            Q(contractor__icontains=value)
             ).distinct()
