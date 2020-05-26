@@ -36,7 +36,7 @@ class PaymentFilterSet(BaseFilterSet):
         queryset = Contractor.objects.all(),
         field_name='contractor',
         lookup_expr='in',
-        label='Contractor (ID)'
+        label='Contractor (ID)',
         null_value = None
     )
     class Meta:
