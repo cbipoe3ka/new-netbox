@@ -59,7 +59,7 @@ class ContractAttachmentForm(F.BootstrapMixin, forms.ModelForm):
 
 
 
-class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm):
+class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
     model = Payment
 
     q = forms.CharField(
