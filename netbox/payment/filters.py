@@ -32,12 +32,11 @@ class PaymentFilterSet(BaseFilterSet):
         null_value=None
     ) 
 
-    contractor = django_filters.MultipleChoiceFilter(
+    contractor = TreeNodeMultipleChoiceFilter(
         queryset = Contractor.objects.all(),
         field_name='contractor',
         lookup_expr='in',
-        label='Contractor (ID)',
-        null_value = None
+        label='Contractor (ID)'
     )
     class Meta:
          model = Payment
