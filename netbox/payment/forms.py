@@ -1,7 +1,7 @@
 import re
 from django import forms
 from utilities import forms as F
-from .models import Payment, ContractFile
+from .models import Payment, ContractFile, Contractor
 from tenancy.forms import TenancyFilterForm, TenancyForm
 from tenancy.models import Tenant
 from extras.forms import (
@@ -79,6 +79,16 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm):
         choices= PaymentTypeChoices,
         required=False,
         widget=StaticSelect2Multiple
+    )
+
+
+    contractor = DynamicModelMultipleChoiceField(
+        queryset = Contractor.objects.all(),
+        to_field_name='contractor',
+        required=False,
+        widget=APISelectMultiple(
+            value_field="pk",
+        )
     )
 
 
