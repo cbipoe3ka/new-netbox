@@ -40,7 +40,7 @@ class PaymentFilterSet(BaseFilterSet):
     )
     class Meta:
          model = Payment
-         fields = ['name', 'price', 'payment_type']
+         fields = ['name', 'price', 'payment_type', 'contractor']
     
     def search(self, queryset, name, value):
         if not value.strip():
