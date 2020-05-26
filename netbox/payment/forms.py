@@ -82,10 +82,7 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
     )
 
 
-    contractor = DynamicModelMultipleChoiceField(
-        queryset = Contractor.objects.all(),
-        required=False
-    )
+
 
 
 
