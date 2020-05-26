@@ -8,7 +8,7 @@ from utilities.filters import (
     BaseFilterSet, NameSlugSearchFilterSet, TagFilter, TreeNodeMultipleChoiceFilter
 )
 from .choices import *
-from .models import Payment, Contractor, Company
+from .models import Payment
 
 
 __all__ = (
@@ -31,28 +31,15 @@ class PaymentFilterSet(BaseFilterSet):
         choices = PaymentPeriodChoices,
         null_value=None
     ) 
-
-    contractor = TreeNodeMultipleChoiceFilter(
-        queryset = Contractor.objects.all(),
-        field_name='contractor',
-        lookup_expr='in',
-        label='Contractor (ID)'
-    )
     class Meta:
          model = Payment
-         fields = ['name', 'price', 'payment_type', 'contractor']
+         fields = ['name', 'price', 'payment_type']
     
     def search(self, queryset, name, value):
         if not value.strip():
             return queryset
-        qs_filter = (
+        return queryset.filter(
             Q(name__icontains=value) |
             Q(payment_type__icontains=value) |
-            Q(period__icontains=value) |
-            Q(contractor__icontains=value)
-        )
-        try:
-            qs_filter |= Q(asn=int(value.strip()))
-        except ValueError:
-            pass
-        return queryset.filter(qs_filter)
+            Q(period__icontains=value)
+            ).distinct()
