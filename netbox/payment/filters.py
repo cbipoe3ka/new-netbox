@@ -45,9 +45,14 @@ class PaymentFilterSet(BaseFilterSet):
     def search(self, queryset, name, value):
         if not value.strip():
             return queryset
-        return queryset.filter(
+        qs_filter = (
             Q(name__icontains=value) |
             Q(payment_type__icontains=value) |
             Q(period__icontains=value) |
             Q(contractor__icontains=value)
-            ).distinct()
+        )
+        try:
+            qs_filter |= Q(asn=int(value.strip()))
+        except ValueError:
+            pass
+        return queryset.filter(qs_filter)
