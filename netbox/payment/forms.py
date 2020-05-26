@@ -84,11 +84,7 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm):
 
     contractor = DynamicModelMultipleChoiceField(
         queryset = Contractor.objects.all(),
-        to_field_name='contractor',
-        required=False,
-        widget=APISelectMultiple(
-            value_field="pk",
-        )
+        required=False
     )
 
 
