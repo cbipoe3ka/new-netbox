@@ -182,7 +182,11 @@ class Payment(models.Model):
 
     def to_csv(self): 
         blank_value=''
-        date = type(self.payment_date)
+        date = self.payment_date
+
+        if self.period == 'monthly':
+            date.year = 2021
+            date.month = 10
         
 
         return (
