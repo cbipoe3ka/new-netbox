@@ -183,9 +183,8 @@ class Payment(models.Model):
     def to_csv(self): 
         blank_value=''
         date = self.payment_date
-
-        if self.period == 'monthly':
-            date = date.replace(year=2021)
+        output_date = str(date.day) +'.' + str(date.month)
+        
         
 
         return (
@@ -198,5 +197,5 @@ class Payment(models.Model):
             self.sub_project,
             blank_value,
             blank_value,
-            date
+            output_date
         )
