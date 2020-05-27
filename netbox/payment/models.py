@@ -168,7 +168,7 @@ class Payment(models.Model):
     comments = models.TextField (
         blank=True
     )
-    csv_headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Подпроект']
+    csv_headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
 
    
     class Meta:
@@ -181,6 +181,7 @@ class Payment(models.Model):
         return reverse('plugins:payment:payment_view', args=[self.slug])
 
     def to_csv(self): 
+        blank_value=''
         return (
             self.contractor,
             self.comp,
@@ -188,5 +189,8 @@ class Payment(models.Model):
             self.price,
             self.currency,
             self.payment_date,
-            self.sub_project
+            self.sub_project,
+            blank_value,
+            blank_value,
+            blank_value
         )
