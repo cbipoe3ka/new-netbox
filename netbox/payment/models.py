@@ -182,6 +182,9 @@ class Payment(models.Model):
 
     def to_csv(self): 
         blank_value=''
+        date = type(self.payment_date)
+        
+
         return (
             self.contractor,
             self.comp,
@@ -192,5 +195,5 @@ class Payment(models.Model):
             self.sub_project,
             blank_value,
             blank_value,
-            blank_value
+            date
         )
