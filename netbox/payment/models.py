@@ -168,7 +168,7 @@ class Payment(models.Model):
     comments = models.TextField (
         blank=True
     )
-    csv_headers = ['name', 'price', 'period', 'payment_type', 'payment_date', 'comments']
+    csv_headers = ['contractor', 'comp', 'work_description', 'price', 'currency', 'payment_date', 'sub_project']
 
    
     class Meta:
@@ -182,10 +182,11 @@ class Payment(models.Model):
 
     def to_csv(self):
         return (
-            self.name,
+            self.contractor,
+            self.comp,
+            self.work_description,
             self.price,
-            self.period,
-            self.payment_type,
+            self.currency,
             self.payment_date,
-            self.comments   
+            self.sub_project
         )
