@@ -185,8 +185,7 @@ class Payment(models.Model):
         date = self.payment_date
 
         if self.period == 'monthly':
-            date.year = 2021
-            date.month = 10
+            date = date.replace(year=2021)
         
 
         return (
