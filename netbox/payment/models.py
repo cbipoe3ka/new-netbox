@@ -180,8 +180,7 @@ class Payment(models.Model):
     def get_absolute_url(self):
         return reverse('plugins:payment:payment_view', args=[self.slug])
 
-    def to_csv(self):
-        date 
+    def to_csv(self): 
         return (
             self.contractor,
             self.comp,
