@@ -168,7 +168,7 @@ class Payment(models.Model):
     comments = models.TextField (
         blank=True
     )
-    csv_headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+    csv_headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
 
    
     class Meta:
@@ -191,6 +191,7 @@ class Payment(models.Model):
             self.price,
             self.currency,
             self.payment_date,
+            self.period,
             self.sub_project,
             blank_value,
             blank_value,
