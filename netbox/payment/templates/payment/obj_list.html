@@ -5,22 +5,37 @@
 {% block content %}
 {% if permissions.view  %}
 
+
+
+<!-- div для формирования отчета по месяцам-->
+<div class="pull-left noprint">
+    <div class="form-group">
+        <!-- элемент input с id = datetimepicker1 -->
+        <div class="input-group" id="datetimepicker1">
+          <input type="text" class="form-control" />
+          <span class="input-group-addon">
+            <span class="glyphicon glyphicon-calendar"></span>
+          </span>
+        </div>
+      </div>
+      
+      <!-- Инициализация виджета "Bootstrap datetimepicker" -->
+      <script>
+        $(function () {
+          // идентификатор элемента (например: #datetimepicker1), для которого необходимо инициализировать виджет Bootstrap DateTimePicker
+          $('#datetimepicker1').datetimepicker();
+        });
+      </script>
+</div>
+
 <div class="pull-right noprint">
     {% block buttons %}{% endblock %}
-
     {% if permissions.add %}
-
     <a href="{% url 'plugins:payment:payment_add' %}" class="btn btn-primary">Add payment</a>
-    
     {% endif %}
-
-
     {% if 'export' in action_buttons %}
         {% export_button content_type %}
     {% endif %}
-
-
-
 </div>
 
 
