@@ -341,7 +341,7 @@ class ReportView(View, PermissionRequiredMixin):
         return '\n'.join(csv_data)
 
     def post (self,request, *args, **kwargs):
-        data = forms.ReportForm
+        data = forms.ReportForm(request.POST or None)
 
         if data.is_valid():
             value =  data.cleaned_data.get['date']
