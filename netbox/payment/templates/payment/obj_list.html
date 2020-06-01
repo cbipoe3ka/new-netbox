@@ -9,14 +9,7 @@
 
 <!-- div для формирования отчета по месяцам-->
 <div class="pull-right noprint">
-<form action="{% url 'plugins:payment:report' %}" method="post">
-    {% csrf_token %}
-    {{ form.date }}
 
-    <button type="submit" class="btn btn-default"> Generate Report </button>
-
-
-</form>
 </div>
 
 <div class="pull-right noprint">
@@ -87,7 +80,13 @@
     {% if filter_form %}
         <div class="col-md-3 noprint">
             {% include 'inc/search_panel.html' %}
-            {% block sidebar %}{% endblock %}
+            {% block sidebar %}
+            <form action="{% url 'plugins:payment:report' %}" method="post">
+                {% csrf_token %}
+                {{ form.date }}
+                <button type="submit" class="btn btn-default"> Generate Report </button>
+            </form>
+            {% endblock %}
         </div>
     {% endif %}
 </div>

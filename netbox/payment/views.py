@@ -155,7 +155,6 @@ class PaymentCreate (GetReturnURLMixin, View):
             'return_url': self.get_return_url(request, self.obj),
         })
 
-
 class PaymentListView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
     queryset = Payment.objects.all()
@@ -276,9 +275,6 @@ class PaymentListView(View, PermissionRequiredMixin):
     def extra_context(self):
         return {}
 
-
-
-
 class PaymentView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
     def get(self, request, slug):
@@ -309,8 +305,6 @@ class PaymentDeleteView(ObjectDeleteView):
     model = Payment
     default_return_url = 'plugins:payment:payment_list'
 
-
-
 class ContractAttachementEditView(ObjectEditView):
     model = ContractFile
     model_form = forms.ContractAttachmentForm
@@ -324,12 +318,12 @@ class ContractAttachementEditView(ObjectEditView):
     def get_return_url(self, request, contractfile):
         return contractfile.parent.get_absolute_url()
 
-
-
 class ContractDeleteView(ObjectDeleteView):
     model = ContractFile
     
     def get_return_url(self, request, contractfile):
         return contractfile.parent.get_absolute_url()
 
-
+class ReportView(View, PermissionRequiredMixin):
+    permission_required = 'payment.view_payment'
+    queryset = Payment.objects.all()
