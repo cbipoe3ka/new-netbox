@@ -342,7 +342,7 @@ class ReportView(View, PermissionRequiredMixin):
 
     def post (self,request, *args, **kwargs):
 
-        value = forms.ReportForm.cleaned_data['date']
+        value = forms.ReportForm.cleaned_data.get['date']
 
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
