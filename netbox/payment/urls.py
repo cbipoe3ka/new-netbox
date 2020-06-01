@@ -8,7 +8,7 @@ app_name = 'payment'
 
 urlpatterns = [
     path('', views.PaymentListView.as_view(), name='payment_list'),  
-    path('add/', views.PaymentCreateView.as_view(), name='payment_add'),
+    path('add/', views.ReportView.as_view(), name='payment_add'),
     path('report/', views.PaymentCreateView.as_view(), name='report'),
     path('<slug:slug>/', views.PaymentView.as_view(), name='payment_view'),
     path('<int:pk>/edit/', views.PaymentEditView.as_view(), name='payment_edit'),

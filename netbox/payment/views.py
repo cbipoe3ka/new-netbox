@@ -329,3 +329,12 @@ class ContractDeleteView(ObjectDeleteView):
 class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
     queryset = Payment.objects.all()
+
+    def post(self):
+        headers = self.queryset.model.csv_headers.copy()
+        for obj in self.queryset:
+            data = obj.to_csv()
+
+            csv_data.append(csv_format(data))
+        return '\n'.join(csv_data)
+
