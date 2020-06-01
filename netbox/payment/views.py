@@ -330,7 +330,7 @@ class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
     queryset = Payment.objects.all()
 
-    def get(self, request):
+    def to_table (self):
         headers = self.queryset.model.csv_headers.copy()
         for obj in self.queryset:
             data = obj.to_csv()
@@ -338,3 +338,8 @@ class ReportView(View, PermissionRequiredMixin):
             csv_data.append(csv_format(data))
         return '\n'.join(csv_data)
 
+    def get (self,requset):
+        response = HttpResponse(self.to_table(), content_type='text/csv')
+        filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
+        return response
