@@ -82,10 +82,7 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
 
 class ReportForm(forms.Form):
 
-    date = django_filters.ChoiceFilter(
-        choices = ReportChoices,
-        null_value = None
-    )
+
     class Meta:
         model = Report
 
