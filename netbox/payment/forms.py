@@ -13,7 +13,8 @@ from utilities.forms import (
     StaticSelect2Multiple, TagFilterField,
 )
 from taggit.forms import TagField
-from .choices import PaymentPeriodChoices, PaymentTypeChoices
+from .choices import PaymentPeriodChoices, PaymentTypeChoices, ReportChoices
+import django_filters
 
 
 
@@ -81,11 +82,14 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
 
 class ReportForm(forms.Form):
 
-
+    date = django_filters.ChoiceFilter(
+        choices = ReportChoices,
+        null_value = None
+    )
     class Meta:
         model = Report
 
-        fields = ['date',]
+        fields = ['date']
 
         widgets = {
             'date' : F.StaticSelect2(),
