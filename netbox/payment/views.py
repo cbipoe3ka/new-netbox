@@ -341,8 +341,10 @@ class ReportView(View, PermissionRequiredMixin):
         return '\n'.join(csv_data)
 
     def post (self,request, *args, **kwargs):
+        data = forms.ReportForm
 
-        value = forms.ReportForm.cleaned_data.get['date']
+        if data.is_valid():
+            value =  data.cleaned_data.get['date']
 
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
