@@ -328,7 +328,7 @@ class ContractDeleteView(ObjectDeleteView):
 
 class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
-    queryset = Payment.objects.filter(name='test')
+    queryset = Payment.objects.all()
 
     def to_table (self):
 
