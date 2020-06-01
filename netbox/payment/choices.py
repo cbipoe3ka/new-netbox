@@ -1,5 +1,54 @@
 from utilities.choices import ChoiceSet
 
+
+
+class ReportChoices(ChoiceSet):
+    YEAR = 'Годовой'
+    JAN = 'Январь'
+    FEB = 'Февраль'
+    MAR = 'Март'
+    APR = 'Апрель'
+    MAY = 'Май'
+    JUN = 'Июнь'
+    JUL = 'Июль'
+    AUG = 'Август'
+    SEP = 'Сентябрь'
+    OCT = 'Октябрь'
+    NOV = 'Ноябрь'
+    DEC = 'Декабрь'
+    CHOICES = (
+        (YEAR , 'Годовой'),
+        (JAN , 'Январь'),
+        (FEB , 'Февраль'),
+        (MAR , 'Март'),
+        (APR , 'Апрель'),
+        (MAY , 'Май'),
+        (JUN , 'Июнь'),
+        (JUL , 'Июль'),
+        (AUG , 'Август'),
+        (SEP , 'Сентябрь'),
+        (OCT , 'Октябрь'),
+        (NOV , 'Ноябрь'),
+        (DEC , 'Декабрь'),
+    )
+
+    LEGACY_MAP = {
+        YEAR: 0,
+        JAN: 1,
+        FEB: 2,
+        MAR: 3,
+        APR: 4,
+        MAY: 5,
+        JUN: 6,
+        JUL: 7,
+        AUG: 8,
+        SEP: 9,
+        OCT: 10,
+        NOV: 11,
+        DEC: 12,
+    }
+
+
 class PaymentPeriodChoices(ChoiceSet):
 
     PAYMENT_YEAR = 'yearly'
