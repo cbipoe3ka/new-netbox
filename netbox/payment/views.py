@@ -344,7 +344,7 @@ class ReportView(View, PermissionRequiredMixin):
         data = forms.ReportForm(request.POST or None)
 
         if data.is_valid():
-            value =  data.cleaned_data.get['date']
+            value =  data.cleaned_data['date']
 
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
