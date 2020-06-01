@@ -333,7 +333,8 @@ class ReportView(View, PermissionRequiredMixin):
     def to_table (self):
 
         csv_data = []
-        headers = self.queryset.model.csv_headers.copy()
+        headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+
         for obj in Payment.objects.all():
             data = obj.to_csv()
 
