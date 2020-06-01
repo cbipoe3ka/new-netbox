@@ -80,7 +80,7 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
         widget=StaticSelect2Multiple
     )
 
-class ReportForm(forms.Form):
+class ReportForm(F.BootstrapMixin, forms.ModelForm):
 
 
     class Meta:
