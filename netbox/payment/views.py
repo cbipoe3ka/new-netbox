@@ -343,9 +343,8 @@ class ReportView(View, PermissionRequiredMixin):
         data = forms.ReportForm(request.POST or None)
 
         if request.method == "POST" and data.is_valid():
-            value =  data.get['date']
-
-        queryset = Payment.objects.filter(name=value)
+            value =  data.cleaned_data['date']
+            queryset = Payment.objects.filter(name=value)
 
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
