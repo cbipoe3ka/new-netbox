@@ -339,7 +339,7 @@ class ReportView(View, PermissionRequiredMixin):
             csv_data.append(csv_format(data))
         return '\n'.join(csv_data)
 
-    def get (self,requset):
+    def post (self,requset):
         forma = forms.ReportForm(requset.GET or None)
         filter_value = forma.cleaned_data.get("date")
 
