@@ -342,6 +342,8 @@ class ReportView(View, PermissionRequiredMixin):
 
     def post (self,request, *args, **kwargs):
 
+        value = forms.ReportForm.cleaned_data['date']
+
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
         filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
