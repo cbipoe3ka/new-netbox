@@ -336,9 +336,9 @@ class ReportView(View, PermissionRequiredMixin):
         headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
         csv_data.append(','.join(headers))
         for obj in Payment.objects.all():
-            data = obj.to_csv()
-
-            csv_data.append(csv_format(data))
+            if period.YEAR:
+                data = obj.to_csv()
+                csv_data.append(csv_format(data))
         return '\n'.join(csv_data)
 
     def post (self,request, *args, **kwargs):
