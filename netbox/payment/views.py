@@ -328,7 +328,6 @@ class ContractDeleteView(ObjectDeleteView):
 
 class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
-    queryset = Payment.objects.filter(name='test')
 
     def to_table (self):
 
@@ -341,6 +340,9 @@ class ReportView(View, PermissionRequiredMixin):
         return '\n'.join(csv_data)
 
     def get (self,requset):
+        value = forms.ReportForm
+        filter_value = value.date
+        queryset = Payment.objects.filter(name=filter_value)
         response = HttpResponse(self.to_table(), content_type='text/csv')
         filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
