@@ -80,10 +80,7 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
     )
 
 class ReportForm(forms.Form):
-    
-    date = forms.CharField(
-        max_length=40
-     )
+
 
     class Meta:
         model = Report
