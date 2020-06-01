@@ -264,7 +264,7 @@ class PaymentListView(View, PermissionRequiredMixin):
             'permissions': permissions,
             'action_buttons': self.action_buttons,
             'filter_form': self.filterset_form(request.GET, label_suffix='') if self.filterset_form else None,
-            'form':form,
+            'form': self.form,
         }
         context.update(self.extra_context())
 
