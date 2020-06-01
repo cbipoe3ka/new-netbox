@@ -9,7 +9,14 @@
 
 <!-- div для формирования отчета по месяцам-->
 <div class="pull-left noprint">
-    
+<form action="{% url 'plugins:payment:report' %}" method="post">
+    {% csrf_token %}
+    {{ from.date }}
+
+    <button type="submit" class="btn btn-default"> Generate Report </button>
+
+
+</form>
 </div>
 
 <div class="pull-right noprint">

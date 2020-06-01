@@ -57,8 +57,6 @@ class ContractAttachmentForm(F.BootstrapMixin, forms.ModelForm):
             'name', 'document',
         ]
 
-
-
 class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
     model = Payment
 
@@ -81,6 +79,11 @@ class PaymentFilterForm (BootstrapMixin, CustomFieldFilterForm, forms.Form):
         widget=StaticSelect2Multiple
     )
 
+class ReportForm(forms.Form):
+    
+    date = forms.CharField(
+        max_length=40
+     )
 
     
 
