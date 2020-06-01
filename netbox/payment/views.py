@@ -334,7 +334,7 @@ class ReportView(View, PermissionRequiredMixin):
 
         csv_data = []
         headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
-
+        csv_data.append(','.join(headers))
         for obj in Payment.objects.all():
             data = obj.to_csv()
 
