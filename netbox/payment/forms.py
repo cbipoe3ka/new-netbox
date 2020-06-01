@@ -1,7 +1,7 @@
 import re
 from django import forms
 from utilities import forms as F
-from .models import Payment, ContractFile, Contractor
+from .models import Payment, ContractFile, Contractor, Report
 from tenancy.forms import TenancyFilterForm, TenancyForm
 from tenancy.models import Tenant
 from extras.forms import (
@@ -85,6 +85,14 @@ class ReportForm(forms.Form):
         max_length=40
      )
 
+    class Meta:
+        model = Report
+
+        fields = ['date',]
+
+        widgets = {
+            'date' : F.StaticSelect2(),
+        }
     
 
 

@@ -78,6 +78,15 @@ class Company(models.Model):
     class Meta:
         ordering = ['name']
 
+class Report(models.Model):
+    date = models.CharField(
+        max_length=70,
+        verbose_name='Год\Месяц'
+    )
+
+    def __str__(self):
+        return self.date
+
 
     
 class Payment(models.Model):
