@@ -4,7 +4,7 @@ from circuits.models import Circuit
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 from django.urls import reverse
-from .choices import PaymentPeriodChoices, PaymentTypeChoices, CurrencyChoices, SubProjectChoices
+from .choices import PaymentPeriodChoices, PaymentTypeChoices, CurrencyChoices, SubProjectChoices, ReportChoices
 
 # Create your models here.
 __all__ = (
@@ -81,7 +81,9 @@ class Company(models.Model):
 class Report(models.Model):
     date = models.CharField(
         max_length=70,
-        verbose_name='Год\Месяц'
+        verbose_name='Год\Месяц',
+        choices=ReportChoices,
+        default=ReportChoices.YEAR
     )
 
     def __str__(self):
