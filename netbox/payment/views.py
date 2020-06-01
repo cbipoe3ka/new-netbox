@@ -341,7 +341,7 @@ class ReportView(View, PermissionRequiredMixin):
 
     def get (self,requset):
         value = forms.ReportForm
-        filter_value = value.date
+        filter_value = value.cleaned_data['date']
         queryset = Payment.objects.filter(name=filter_value)
         response = HttpResponse(self.to_table(), content_type='text/csv')
         filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
