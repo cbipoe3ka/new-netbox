@@ -328,9 +328,9 @@ class ContractDeleteView(ObjectDeleteView):
 
 class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
-    queryset = None
+    queryset = Payment.objects.all()
 
-    def to_table (self):
+    def to_table (self,period):
 
         csv_data = []
         headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
@@ -346,10 +346,9 @@ class ReportView(View, PermissionRequiredMixin):
 
         if request.method == "POST" and data.is_valid():
             value =  data.cleaned_data['date']
-            self.queryset = Payment.objects.filter(payment_date=value)
+            
 
-
-        response = HttpResponse(self.to_table(), content_type='text/csv')
+        response = HttpResponse(self.to_table(value), content_type='text/csv')
         filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
         return response
