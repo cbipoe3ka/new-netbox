@@ -83,6 +83,15 @@
             {% include 'inc/search_panel.html' %}
             {% block sidebar %}
 
+
+
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="fa fa-search" aria-hidden="true"></span>
+                    <strong>Search</strong>
+                </div>
+
             <div class="panel-body">
             <form action="{% url 'plugins:payment:report' %}" method="post" id="ReportForm">
                 {% csrf_token %}
@@ -95,7 +104,7 @@
                 <button type="submit" class="btn btn-default"> Generate Report </button>
             </form>
         </div>
-
+            </div>
 
 
             {% endblock %}
