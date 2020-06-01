@@ -163,6 +163,7 @@ class PaymentListView(View, PermissionRequiredMixin):
     table = tables.PaymentTable
     template_name = 'payment/obj_list.html'
     action_buttons = ( 'export')
+    form = forms.ReportForm
 
     def queryset_to_csv(self):
         """
@@ -263,6 +264,7 @@ class PaymentListView(View, PermissionRequiredMixin):
             'permissions': permissions,
             'action_buttons': self.action_buttons,
             'filter_form': self.filterset_form(request.GET, label_suffix='') if self.filterset_form else None,
+            'form':form,
         }
         context.update(self.extra_context())
 
