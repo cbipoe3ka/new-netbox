@@ -343,7 +343,7 @@ class ReportView(View, PermissionRequiredMixin):
         data = forms.ReportForm(request.POST or None)
 
         if request.method == "POST" and data.is_valid():
-            value =  data.cleaned_data['date']
+            value =  data.get['date']
 
         queryset = Payment.objects.filter(name=value)
 
