@@ -328,7 +328,6 @@ class ContractDeleteView(ObjectDeleteView):
 
 class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
-    queryset = Payment.objects.all()
 
     def to_table (self):
 
@@ -345,6 +344,8 @@ class ReportView(View, PermissionRequiredMixin):
 
         if data.is_valid():
             value =  data.cleaned_data['date']
+
+        queryset = Payment.objects.filter(name=value)
 
 
         response = HttpResponse(self.to_table(), content_type='text/csv')
