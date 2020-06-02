@@ -10,7 +10,6 @@ from django_tables2 import RequestConfig
 import logging
 import sys
 from copy import deepcopy
-import datetime
 
 
 
