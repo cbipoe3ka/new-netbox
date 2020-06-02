@@ -64,7 +64,7 @@ def format_in_csv(data):
         for value in data:
 
             if value == 'monthly':
-                value = value + ' * 12 = ' + int(value)*12
+                value = value + ' * 12 = ' 
 
             # Represent None or False with empty string
             if value is None or value is False:
