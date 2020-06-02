@@ -453,7 +453,7 @@ def format_in_csv(data):
     """
     csv = []
     arg_list = list(data)
-    arg_list[3] = str(arg_list[3])+ ' * 12 = ' + str(arg_list[3] * 12)
+    arg_list[3] = '=' + str(arg_list[3])+ '*12'
     for value in arg_list:
 
 
