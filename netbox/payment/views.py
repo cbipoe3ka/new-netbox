@@ -55,6 +55,39 @@ from .models import Payment, ContractFile
 from utilities.views import GetReturnURLMixin
 
 
+def format_in_csv(data):
+        """
+        Encapsulate any data which contains a comma within double quotes.
+        """
+        csv = []
+        for value in data:
+
+            if value == 'monthly':
+                value = value + ' * 12 = ' + int(value)*12
+
+            # Represent None or False with empty string
+            if value is None or value is False:
+                csv.append('')
+                continue
+
+            # Convert dates to ISO format
+            if isinstance(value, (datetime.date, datetime.datetime)):
+                value = value.isoformat()
+
+            # Force conversion to string first so we can check for any commas
+            if not isinstance(value, str):
+                value = '{}'.format(value)
+
+            # Double-quote the value if it contains a comma or line break
+            if ',' in value or '\n' in value:
+                value = value.replace('"', '""')  # Escape double-quotes
+                csv.append('"{}"'.format(value))
+            else:
+                csv.append('{}'.format(value))
+
+        return ','.join(csv)
+
+
 # Create your views here.
 
 
@@ -331,37 +364,7 @@ class ReportView(View, PermissionRequiredMixin):
     queryset = Payment.objects.all()
 
 
-    def format_in_csv(data):
-        """
-        Encapsulate any data which contains a comma within double quotes.
-        """
-        csv = []
-        for value in data:
-
-            if value == 'monthly':
-                value = value + ' * 12 = ' + int(value)*12
-
-            # Represent None or False with empty string
-            if value is None or value is False:
-                csv.append('')
-                continue
-
-            # Convert dates to ISO format
-            if isinstance(value, (datetime.date, datetime.datetime)):
-                value = value.isoformat()
-
-            # Force conversion to string first so we can check for any commas
-            if not isinstance(value, str):
-                value = '{}'.format(value)
-
-            # Double-quote the value if it contains a comma or line break
-            if ',' in value or '\n' in value:
-                value = value.replace('"', '""')  # Escape double-quotes
-                csv.append('"{}"'.format(value))
-            else:
-                csv.append('{}'.format(value))
-
-        return ','.join(csv)
+    
 
     def to_table (self,period):
 
