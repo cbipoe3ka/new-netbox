@@ -343,8 +343,14 @@ class ReportView(View, PermissionRequiredMixin):
         csv_data.append(','.join(headers))  
         for obj in Payment.objects.all():
             if period == 'Годовой':
-                data = obj.to_csv()
-                csv_data.append(format_in_csv(data))
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(format_in_csv(data))
+                elif obj.period == 'yearly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+
+
         return '\n'.join(csv_data)
 
     def post (self,request, *args, **kwargs):
