@@ -333,12 +333,15 @@ class ReportView(View, PermissionRequiredMixin):
     def to_table (self,period):
 
         csv_data = []
-        headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
-        csv_data.append(','.join(headers))
         for obj in Payment.objects.all():
             if period == 'Годовой':
+                headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа (в год)', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+                csv_data.append(','.join(headers))        
                 data = obj.to_csv()
-                csv_data.append(csv_format(data))
+                csv_data.append(format_in_csv(data))
+
+
+
         return '\n'.join(csv_data)
 
     def post (self,request, *args, **kwargs):
@@ -352,3 +355,36 @@ class ReportView(View, PermissionRequiredMixin):
         filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
         response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
         return response
+    
+
+    def format_in_csv(data):
+        """
+        Encapsulate any data which contains a comma within double quotes.
+        """
+        csv = []
+        for value in data:
+
+            if value == 'monthly':
+                value = value + ' * 12 = ' + int(value)*12
+
+            # Represent None or False with empty string
+            if value is None or value is False:
+                csv.append('')
+                continue
+
+            # Convert dates to ISO format
+            if isinstance(value, (datetime.date, datetime.datetime)):
+                value = value.isoformat()
+
+            # Force conversion to string first so we can check for any commas
+            if not isinstance(value, str):
+                value = '{}'.format(value)
+
+            # Double-quote the value if it contains a comma or line break
+            if ',' in value or '\n' in value:
+                value = value.replace('"', '""')  # Escape double-quotes
+                csv.append('"{}"'.format(value))
+            else:
+                csv.append('{}'.format(value))
+
+        return ','.join(csv)
