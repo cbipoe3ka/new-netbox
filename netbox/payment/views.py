@@ -349,6 +349,13 @@ class ReportView(View, PermissionRequiredMixin):
                 elif obj.period == 'yearly':
                     data = obj.to_csv()
                     csv_data.append(csv_format(data))
+            elif period == 'Январь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month=1:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
 
 
         return '\n'.join(csv_data)
