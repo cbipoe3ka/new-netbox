@@ -362,8 +362,9 @@ def format_in_csv(data):
     Encapsulate any data which contains a comma within double quotes.
     """
     csv = []
-    data[3] = data[3] * 12 
-    for value in data:
+    arg_list = list(data)
+    arg_list[3] = arg_list[3] * 12
+    for value in arg_list:
 
 
         # Represent None or False with empty string
