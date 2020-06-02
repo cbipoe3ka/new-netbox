@@ -330,32 +330,6 @@ class ReportView(View, PermissionRequiredMixin):
     permission_required = 'payment.view_payment'
     queryset = Payment.objects.all()
 
-    def to_table (self,period):
-
-        csv_data = []
-        for obj in Payment.objects.all():
-            if period == 'Годовой':
-                headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа (в год)', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
-                csv_data.append(','.join(headers))        
-                data = obj.to_csv()
-                csv_data.append(format_in_csv(data))
-
-
-
-        return '\n'.join(csv_data)
-
-    def post (self,request, *args, **kwargs):
-        data = forms.ReportForm(request.POST or None)
-
-        if request.method == "POST" and data.is_valid():
-            value =  data.cleaned_data['date']
-            
-
-        response = HttpResponse(self.to_table(value), content_type='text/csv')
-        filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
-        response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
-        return response
-    
 
     def format_in_csv(data):
         """
@@ -388,3 +362,32 @@ class ReportView(View, PermissionRequiredMixin):
                 csv.append('{}'.format(value))
 
         return ','.join(csv)
+
+    def to_table (self,period):
+
+        csv_data = []
+        for obj in Payment.objects.all():
+            if period == 'Годовой':
+                headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа (в год)', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+                csv_data.append(','.join(headers))        
+                data = obj.to_csv()
+                csv_data.append(format_in_csv(data))
+
+
+
+        return '\n'.join(csv_data)
+
+    def post (self,request, *args, **kwargs):
+        data = forms.ReportForm(request.POST or None)
+
+        if request.method == "POST" and data.is_valid():
+            value =  data.cleaned_data['date']
+            
+
+        response = HttpResponse(self.to_table(value), content_type='text/csv')
+        filename = 'netbox_{}.csv'.format(self.queryset.model._meta.verbose_name_plural)
+        response['Content-Disposition'] = 'attachment; filename="{}"'.format(filename)
+        return response
+    
+
+    
