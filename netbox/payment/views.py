@@ -336,11 +336,14 @@ class ReportView(View, PermissionRequiredMixin):
 
     def to_table (self,period):
 
+
         csv_data = []
+
+        headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа (в год)', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+        csv_data.append(','.join(headers))  
         for obj in Payment.objects.all():
             if period == 'Годовой':
-                headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа (в год)', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
-                csv_data.append(','.join(headers))        
+      
                 data = obj.to_csv()
                 csv_data.append(csv_format(data))
 
