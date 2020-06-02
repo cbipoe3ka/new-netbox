@@ -356,7 +356,83 @@ class ReportView(View, PermissionRequiredMixin):
                 elif obj.period == 'yearly' and obj.payment_date.month == 1:
                     data = obj.to_csv()
                     csv_data.append(csv_format(data))
-
+            elif period == 'Февраль':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 2:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Март':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 3:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Апрель':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 4:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Май':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 5:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Июнь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 6:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Июль':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 7:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Август':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 8:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Сентябрь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 9:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Октябрь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 10:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Ноябрь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 11:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+            elif period == 'Декабрь':
+                if obj.period == 'monthly':
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
+                elif obj.period == 'yearly' and obj.payment_date.month == 12:
+                    data = obj.to_csv()
+                    csv_data.append(csv_format(data))
 
         return '\n'.join(csv_data)
 
