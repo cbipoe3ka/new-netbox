@@ -338,7 +338,7 @@ class ReportView(View, PermissionRequiredMixin):
 
         csv_data = []
 
-        headers = ['Контрагент', 'Компания плательщик', 'Назначение платежа', 'Сумма платежа', 'Валюта', 'Дата оплаты', 'Периодичность', 'Подпроект', 'Подготовил', 'Ответственный', 'Комментарий']
+        headers = self.queryset.model.csv_headers.copy()
         csv_data.append(','.join(headers))  
         for obj in Payment.objects.all():
             if period == 'Годовой':
